@@ -1,0 +1,727 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Android 网络请求框架哪家强? | yxcoding&#39;s blog</title>
+    <meta name="author" content="yxcoding">
+    
+    <meta name="description" content="自我总结，归纳分享">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Android 网络请求框架哪家强?"/>
+    <meta property="og:site_name" content="yxcoding"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="yxcoding" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="black">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">yxcoding</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category " href="http://hukai.me/android-training-course-in-chinese/index.html" >
+                            <i class="fa fa-android "></i>
+                            
+                            Android官方培训
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category " href="http://wiki.jikexueyuan.com/project/swift/" >
+                            <i class="fa fa-apple "></i>
+                            
+                            Swift 中文版教程
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav black darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://ww2.sinaimg.cn/small/74990035jw1f1rjkd681bj20rs0rsdhg.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">yxcoding</p>
+                        <p class="desc">专注于移动开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category " href="http://hukai.me/android-training-course-in-chinese/index.html" >
+                    <i class="fa fa-android "></i>
+                    
+                    Android官方培训
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category " href="http://wiki.jikexueyuan.com/project/swift/" >
+                    <i class="fa fa-apple "></i>
+                    
+                    Swift 中文版教程
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav black darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/开发总结/">
+                    开发总结 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开发总结/移动开发/">
+                    移动开发 <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/开发总结/移动开发/Android/">
+                    Android <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开发总结/服务器/">
+                    服务器 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/干货分享/">
+                    干货分享 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/干货分享/移动开发/">
+                    移动开发 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/干货分享/移动开发/Android/">
+                    Android <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper black">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/开发总结/">开发总结</a><a class="breadcrumb" href="/categories/开发总结/移动开发/">移动开发</a><a class="breadcrumb" href="/categories/开发总结/移动开发/Android/">Android</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Android 网络请求框架哪家强?</h1>
+    
+
+
+            </div>
+            <time class="green-link-context" datetime="2016-06-24T07:22:05.000Z"><a href="/2016/06/24/1466752925430/">2016-06-24</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/android/" class="chip green lighten-1">android</a>
+        
+            <a href="/tags/开源库/" class="chip green lighten-1">开源库</a>
+        
+            <a href="/tags/网络请求/" class="chip green lighten-1">网络请求</a>
+        
+    </div>
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#OkHttp"><span class="section table-of-contents-text">OkHttp</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#配置环境"><span class="section table-of-contents-text">配置环境</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#基本使用"><span class="section table-of-contents-text">基本使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#GET-请求"><span class="section table-of-contents-text">GET 请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#POST-请求"><span class="section table-of-contents-text">POST 请求</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Android-async-http"><span class="section table-of-contents-text">Android-async-http</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#配置环境-1"><span class="section table-of-contents-text">配置环境</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#基本使用-1"><span class="section table-of-contents-text">基本使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#GET-请求-1"><span class="section table-of-contents-text">GET 请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#POST-请求-1"><span class="section table-of-contents-text">POST 请求</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Volley"><span class="section table-of-contents-text">Volley</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#配置环境-2"><span class="section table-of-contents-text">配置环境</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#基本使用-2"><span class="section table-of-contents-text">基本使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#GET-请求-2"><span class="section table-of-contents-text">GET 请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#POST-请求-2"><span class="section table-of-contents-text">POST 请求</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Retrofit"><span class="section table-of-contents-text">Retrofit</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#配置环境-3"><span class="section table-of-contents-text">配置环境</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#基本使用-3"><span class="section table-of-contents-text">基本使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#GET-请求-3"><span class="section table-of-contents-text">GET 请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#POST-请求-3"><span class="section table-of-contents-text">POST 请求</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>首先，我们来列一下目前一些知名的Android网络请求库：OKHttp、Android-async-http 、Volley、Retrofit，以上这些开源框架一直以来备受开发者的青睐，下面我们来统一说明一下各大网络请求框架的使用方法。<br><a id="more"></a></p>
+<h1 id="OkHttp"><a href="#OkHttp" class="headerlink" title="OkHttp"></a><a href="http://square.github.io/okhttp/" target="_blank" rel="external">OkHttp</a></h1><p>OKHttp 是一个高效的HTTP去请求库，功能非常之强大：</p>
+<ol>
+<li>支持SPDY(Google开发的基于TCP的应用层协议，用以最小化网络延迟，提升网络速度，优化用户的网络使用体验, 是HTTP协议的增强）,共享同一个Socket来处理同一个服务器的所有请求</li>
+<li>如果SPDY不可用，则通过连接池来减少请求延时</li>
+<li>无缝的支持GZIP来减少数据流量</li>
+<li>缓存响应数据来减少重复的网络请求</li>
+</ol>
+<p>OkHttp 会从很多常用的连接问题中自动恢复。如果您的服务器配置了多个IP地址，当第一个IP连接失败的时候，OkHttp会自动尝试下一个IP。OkHttp还处理了代理服务器问题和SSL握手失败问题。<br><strong>查看android 4.4的源码就可以发现原来的HttpURLConnection 已经替换成OKHttp来实现了，所以不说他牛逼都不行。可惜OKHttp 现阶段还不支持异步请求的回调接口。</strong></p>
+<blockquote>
+<p>本博客Demo利用Android Studio 开发</p>
+</blockquote>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>在build.gradle 中引入OkHttp 请求框架<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.squareup.okhttp3:okhttp:3.3.1'</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="GET-请求"><a href="#GET-请求" class="headerlink" title="GET 请求"></a>GET 请求</h3><hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 发送Get 请求</span><br><span class="line">* @param context  通过context.getClass().getName() 设置请求tag，用来取消请求</span><br><span class="line">* @param url</span><br><span class="line">* @param callback 基于okHttp Callback 封装的一层回调</span><br><span class="line">*/</span><br><span class="line">public void sendGetRequest(Context context, String url, HttpRequestCallback callback)</span><br><span class="line">&#123;</span><br><span class="line">    Request request = new Request.Builder().tag(getTagByContext(context)).url(url).get().build();</span><br><span class="line">    okHttpClient.newCall(request).enqueue(getCallback(context, callback));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="POST-请求"><a href="#POST-请求" class="headerlink" title="POST 请求"></a>POST 请求</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 发送POST请求</span><br><span class="line">* @param context   通过context.getClass().getName() 设置请求tag，用来取消请求</span><br><span class="line">* @param url</span><br><span class="line">* @param params    基于FormBody.Builder 封装的post请求参数对象</span><br><span class="line">* @param callback  基于okHttp Callback 封装的一层回调</span><br><span class="line">*/</span><br><span class="line">public void sendPostRequest(Context context, String url, RequestParams params, HttpRequestCallback callback)</span><br><span class="line">&#123;</span><br><span class="line">    Request request = new Request.Builder().tag(getTagByContext(context)).url(url).post(params.toParams()).build();</span><br><span class="line">    okHttpClient.newCall(request).enqueue(getCallback(context, callback));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于OKHttp 不支持异步请求接口回调，所以Demo中重新封装了Callback利用Hanlder来处理请求回调，具体代码见<a href="https://github.com/yxcoding/HttpDemo" target="_blank" rel="external">Demo</a>&gt;&gt;&gt;okhttp 包。</p>
+<h1 id="Android-async-http"><a href="#Android-async-http" class="headerlink" title="Android-async-http"></a><a href="http://loopj.com/android-async-http/" target="_blank" rel="external">Android-async-http</a></h1><p>这个开源框架是基于Apache’s HttpClient 实现的， 所有的请求都是独立在UI主线程之外，通过回调接口方法处理请求结果，其实内部也是通过Handler Message 机制传递消息。它有以下特性:</p>
+<ol>
+<li>采用异步http请求，并通过匿名内部类处理回调结果</li>
+<li>http请求独立在UI主线程之外</li>
+<li>采用线程池来处理并发请求</li>
+<li>采用RequestParams类创建GET/POST参数</li>
+<li>不需要第三方包即可支持Multipart file文件上传</li>
+<li>大小只有25kb</li>
+<li>自动为各种移动电话处理连接断开时请求重连</li>
+<li>超快的自动gzip响应解码支持</li>
+<li>使用BinaryHttpResponseHandler类下载二进制文件(如图片)</li>
+<li>使用JsonHttpResponseHandler类可以自动将响应结果解析为json格式</li>
+<li>持久化cookie存储，可以将cookie保存到你的应用程序的SharedPreferences中</li>
+</ol>
+<p>总体来说，Android-async-http 简单轻便实用，个人比较喜欢…</p>
+<h2 id="配置环境-1"><a href="#配置环境-1" class="headerlink" title="配置环境"></a>配置环境</h2><p>在build.gradle 中引入Android-async-http 请求框架<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.loopj.android:android-async-http:1.4.9'</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="GET-请求-1"><a href="#GET-请求-1" class="headerlink" title="GET 请求"></a>GET 请求</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 发送Get 请求</span><br><span class="line">* @param context  用于取消http请求的凭证</span><br><span class="line">* @param url</span><br><span class="line">* @param callback 异步请求回调接口</span><br><span class="line">*/</span><br><span class="line">public void sendGetRequest(Context context, String url, AsyncHttpResponseHandler callback)</span><br><span class="line">&#123;</span><br><span class="line">  asyncHttpClient.get(context, url, callback);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="POST-请求-1"><a href="#POST-请求-1" class="headerlink" title="POST 请求"></a>POST 请求</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 发送POST 请求</span><br><span class="line">* @param context   用于取消http请求的凭证</span><br><span class="line">* @param url</span><br><span class="line">* @param params    请求参数回对象</span><br><span class="line">* @param callback  异步请求回调接口</span><br><span class="line">*/</span><br><span class="line">public void sendPostRequest(Context context, String url, RequestParams params, AsyncHttpResponseHandler callback)</span><br><span class="line">&#123;</span><br><span class="line">  asyncHttpClient.post(context, url, params, callback);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Android-async-http 中封装了异步请求回调接口，可直接拿来使用。不用自己二次封装。同时可使用JsonHttpResponseHandler 类可以自动将响应结果解析为json格式。具体代码见<a href="https://github.com/yxcoding/HttpDemo" target="_blank" rel="external">Demo</a>&gt;&gt;&gt;asynhttp 包。</p>
+<h1 id="Volley"><a href="#Volley" class="headerlink" title="Volley"></a><a href="http://square.github.io/okhttp/" target="_blank" rel="external">Volley</a></h1><p>Volley 是2013年Google I/O开发者大会上被提出来的，目的是让Android应用网络操作更方便快捷。Volley也支持不同线程异步执行请求从而避免主线程阻塞。作为Android 干爹强力推出的开源框架，这里必须支持一下。Volley 有以下特性:</p>
+<ol>
+<li>自动调度网络请求</li>
+<li>多个并发的网络连接</li>
+<li>通过使用标准的HTTP缓存机制保持磁盘和内存响应的一致</li>
+<li>支持请求优先级</li>
+<li>支持取消请求的强大API，可以取消单个请求或多个</li>
+<li>易于定制</li>
+<li>健壮性：便于正确的更新UI和获取数据</li>
+<li>包含调试和追踪工具</li>
+</ol>
+<h2 id="配置环境-2"><a href="#配置环境-2" class="headerlink" title="配置环境"></a>配置环境</h2><p>在build.gradle 中引入Volley请求框架<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.android.volley:volley:1.0.0'</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="基本使用-2"><a href="#基本使用-2" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="GET-请求-2"><a href="#GET-请求-2" class="headerlink" title="GET 请求"></a>GET 请求</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* Get 请求</span><br><span class="line">* @param context</span><br><span class="line">* @param url</span><br><span class="line">* @param callback</span><br><span class="line">*/</span><br><span class="line">public void sendGetRequest(Context context, String url, VolleyCallback callback)</span><br><span class="line">&#123;</span><br><span class="line">    StringRequest req = new StringRequest(Request.Method.GET, url, callback, callback);</span><br><span class="line">    req.setTag(context);</span><br><span class="line">    requestQueue.add(req);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="POST-请求-2"><a href="#POST-请求-2" class="headerlink" title="POST 请求"></a>POST 请求</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 发送Post请求</span><br><span class="line">* @param context</span><br><span class="line">* @param url</span><br><span class="line">* @param params</span><br><span class="line">* @param callback</span><br><span class="line">*/</span><br><span class="line">public void sendPostRequest(Context context, String url, final VolleyRequestParams params, VolleyCallback callback)</span><br><span class="line">&#123;</span><br><span class="line">    StringRequest req = new StringRequest(Request.Method.POST, url, callback, callback)</span><br><span class="line">	&#123;</span><br><span class="line">        @Override</span><br><span class="line">        protected Map&lt;String, String&gt; getParams() throws AuthFailureError</span><br><span class="line">        &#123;</span><br><span class="line">            return params;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;;</span><br><span class="line">    req.setTag(context);</span><br><span class="line">    requestQueue.add(req);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Volley 中通过RequestQueue 用来执行请求的请求队列，通过Request来构造一个请求对象。Volley提供了以下几种类型的Request:</p>
+<ol>
+<li>StringRequest 响应的主体为字符串</li>
+<li>JsonArrayRequest 发送和接收JSON数组</li>
+<li>JsonObjectRequest 发送和接收JSON对象</li>
+<li>ImageRequest 发送和接收Image</li>
+</ol>
+<p>抽象了底层的Http Client等实现的细节， 为开发者提供了方便的接口。Demo中基于Response.Listener和Response.ErrorListener重新整合封装了一个异步请求回调接口VolleyCallback。具体代码见<a href="https://github.com/yxcoding/HttpDemo" target="_blank" rel="external">Demo</a>&gt;&gt;&gt;volleyhttp 包。</p>
+<h1 id="Retrofit"><a href="#Retrofit" class="headerlink" title="Retrofit"></a><a href="http://square.github.io/retrofit/" target="_blank" rel="external">Retrofit</a></h1><p>Retrofit 和 OKHttp 一样，都是Square开源的网络请求框架， Retrofit 对 OKHttp做了封装。Retrofit 为Android网络请求提供了REST方式的HTTP请求。Retrofit通过接口方法注解的方式统一规范请求接口，例如：@GET、@POST、@Multipart 等等，相比其他其他的网络请求库，Retrofit 具有独特的使用方式，是一套RESTful 架构的客户端实现。提供了多种类型转JAVA对象的转换器。服务器端接口是是一套RESTful架构或者有多种数据返回格式的推荐使用这种方式。</p>
+<h2 id="配置环境-3"><a href="#配置环境-3" class="headerlink" title="配置环境"></a>配置环境</h2><p>在build.gradle 中引入Retrofit 请求框架<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'com.squareup.retrofit2:retrofit:2.1.0'</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="基本使用-3"><a href="#基本使用-3" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="GET-请求-3"><a href="#GET-请求-3" class="headerlink" title="GET 请求"></a>GET 请求</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@GET(<span class="string">"onebox/news/query"</span>)</span><br><span class="line">Call&lt;Result&lt;List&lt;News<span class="meta">&gt;&gt;&gt; </span>getNewsList(@Query(<span class="string">"key"</span>) String key, @Query(<span class="string">"q"</span>) String q);</span><br></pre></td></tr></table></figure>
+<h3 id="POST-请求-3"><a href="#POST-请求-3" class="headerlink" title="POST 请求"></a>POST 请求</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@POST(<span class="string">"onebox/news/query"</span>)</span><br><span class="line"> Call&lt;Result&lt;List&lt;News<span class="meta">&gt;&gt;&gt; </span>getNewsListByPost(@Query(<span class="string">"key"</span>) String key, @Query(<span class="string">"q"</span>) String q);</span><br></pre></td></tr></table></figure>
+<p>Retrofit 和 OKHttp 一样，从2.0 开始，通过定义一个Call 来发起请求，并且可以通过这个call 对象调用call.cancel() 来取消请求。Retrofit 定义了retrofit2.Callback 的异步回调接口<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Callback&lt;T&gt; &#123;</span><br><span class="line">  void onResponse(Call&lt;T&gt; call, Response&lt;T&gt; response);</span><br><span class="line">  void onFailure(Call&lt;T&gt; call, Throwable t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>两个方法都是在主线程中被调用，通过定义泛型T来扩展返回的POJO对象。上文说到Retrofit 提供了JSON 转换器支持，通过设置<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addConverterFactory(GsonConverterFactory.create())</span><br></pre></td></tr></table></figure></p>
+<p>来内部转换POJO对象。<br>以下为Retrofit 支持的格式转换类型：</p>
+<ol>
+<li>Gson: com.squareup.retrofit2:converter-gson</li>
+<li>Jackson: com.squareup.retrofit2:converter-jackson</li>
+<li>Moshi: com.squareup.retrofit2:converter-moshi</li>
+<li>Protobuf: com.squareup.retrofit2:converter-protobuf</li>
+<li>Wire: com.squareup.retrofit2:converter-wire</li>
+<li>Simple XML: com.squareup.retrofit2:converter-simplexml</li>
+<li>Scalars (primitives, boxed, and String): com.squareup.retrofit2:converter-scalars<br>具体代码请参考<a href="https://github.com/yxcoding/HttpDemo" target="_blank" rel="external">Demo</a>&gt;&gt;&gt;retrofithttp 包。</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上四种网络请求框架，各有各的特点：</p>
+<ul>
+<li>OKHttp 和 Retrofit 都是来自Square，质量和性能都很优秀。OKHttp 功能十分强大，可以应对几乎所有的商业场景应用，大家可以根据OKHttp 自由扩展和封装。</li>
+<li>Retrofit 内部也是根据OkHttp 进行了扩展，它把http 请求处理机制交给了OKHttp处理。个人觉得Retrofit 更加人性化，利用RESTful 架构使得接口形式更加规范清晰统一。</li>
+<li>Volley 除了是一个网络请求框架，还是一个图片加载框架，可以二合一使用。</li>
+<li>Android-async-http 个人比较喜欢这个框架，简单方便，异步请求回调，文件上传和下载使用简单，对网络请求要求不是很高的项目完全和可以使用这个框架。可以这么说，Android-async-http 进行了高强度的封装， 使得开发者 白痴式的调用，让开发者更加关注于业务发开。</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2016/06/24/1466752925430/" data-title="Android 网络请求框架哪家强?" data-url="http://yxcoding.github.io/2016/06/24/1466752925430/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'yxcoding'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large black">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer black darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/u/2723786574" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/yxcoding" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2016 www.yxcoding.net, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('black lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=56989526" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

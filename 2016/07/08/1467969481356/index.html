@@ -1,0 +1,692 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>RxJava+Retrofit 构建网络请求处理方式 | yxcoding&#39;s blog</title>
+    <meta name="author" content="yxcoding">
+    
+    <meta name="description" content="自我总结，归纳分享">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="RxJava+Retrofit 构建网络请求处理方式"/>
+    <meta property="og:site_name" content="yxcoding"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="yxcoding" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="black">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">yxcoding</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category " href="http://hukai.me/android-training-course-in-chinese/index.html" >
+                            <i class="fa fa-android "></i>
+                            
+                            Android官方培训
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category " href="http://wiki.jikexueyuan.com/project/swift/" >
+                            <i class="fa fa-apple "></i>
+                            
+                            Swift 中文版教程
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav black darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://ww2.sinaimg.cn/small/74990035jw1f1rjkd681bj20rs0rsdhg.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">yxcoding</p>
+                        <p class="desc">专注于移动开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category " href="http://hukai.me/android-training-course-in-chinese/index.html" >
+                    <i class="fa fa-android "></i>
+                    
+                    Android官方培训
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category " href="http://wiki.jikexueyuan.com/project/swift/" >
+                    <i class="fa fa-apple "></i>
+                    
+                    Swift 中文版教程
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav black darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/开发总结/">
+                    开发总结 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开发总结/移动开发/">
+                    移动开发 <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/开发总结/移动开发/Android/">
+                    Android <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开发总结/服务器/">
+                    服务器 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/干货分享/">
+                    干货分享 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/干货分享/移动开发/">
+                    移动开发 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/干货分享/移动开发/Android/">
+                    Android <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper black">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/开发总结/">开发总结</a><a class="breadcrumb" href="/categories/开发总结/移动开发/">移动开发</a><a class="breadcrumb" href="/categories/开发总结/移动开发/Android/">Android</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>RxJava+Retrofit 构建网络请求处理方式</h1>
+    
+
+
+            </div>
+            <time class="green-link-context" datetime="2016-07-08T09:18:01.000Z"><a href="/2016/07/08/1467969481356/">2016-07-08</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/android/" class="chip green lighten-1">android</a>
+        
+            <a href="/tags/RxJava/" class="chip green lighten-1">RxJava</a>
+        
+            <a href="/tags/Retrofit/" class="chip green lighten-1">Retrofit</a>
+        
+    </div>
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RxJava"><span class="section table-of-contents-text">RxJava</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#观察者模式"><span class="section table-of-contents-text">观察者模式</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#创建被观察者"><span class="section table-of-contents-text">创建被观察者</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#创建观察-订阅者"><span class="section table-of-contents-text">创建观察/订阅者</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#观察者-订阅-被观察者"><span class="section table-of-contents-text">观察者 订阅 被观察者</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#使用案例"><span class="section table-of-contents-text">使用案例</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#事件序列对象加工处理（变换）"><span class="section table-of-contents-text">事件序列对象加工处理（变换）</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#map"><span class="section table-of-contents-text">map()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#flatMap"><span class="section table-of-contents-text">flatMap()</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Scheduler-线程控制"><span class="section table-of-contents-text">Scheduler  线程控制</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RxJava-Retrofit-结合了"><span class="section table-of-contents-text">RxJava + Retrofit 结合了</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>大概在几个月之前， 在CSDN上看见了RxJava这样的一个 新名词，但是也没有太注意，所以也就没去看它。但是过了一段时间，发现网上很多关于RxJava的博客和总结，Github上面的一些开源项目也都用到了RxJava，所以就决定开始研究这个神秘而又新颖的东西。起初看RxJava 很难理解，后来慢慢的也就理解了。<br><a id="more"></a></p>
+<h1 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h1><p>首先，RxJava是个什么鬼？<br>“a library for composing asynchronous and event-based programs using observable sequences for the Java VM”，翻译一下就是“一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库”，总结一下RxJava 就是一个可异步处理基于序列事件的开源库。卧槽，看到这，是不是脑子里浮想翩翩呀？哈哈</p>
+<blockquote>
+<p>通过Android Studio中引入RxJava RxAndroid 和Retrofit 开发库，在app模块中的build.gradle 中复制以下代码<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">'io.reactivex:rxandroid:1.2.1'</span></span><br><span class="line">compile <span class="string">'io.reactivex:rxjava:1.1.6'</span></span><br><span class="line">compile <span class="string">'com.squareup.retrofit2:retrofit:2.1.0'</span></span><br><span class="line">compile <span class="string">'com.squareup.retrofit2:adapter-rxjava:2.1.0'</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>先来一丢RxJava的代码，看看它的代码风格<br>  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// 创建被观察者</span><br><span class="line">Observable.create(new Observable.OnSubscribe&lt;String&gt;()  &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void call(Subscriber&lt;? super String&gt; subscriber)  &#123;</span><br><span class="line">           		// 通知观察者</span><br><span class="line">                subscriber.onNext("Hello");</span><br><span class="line">                subscriber.onNext("yxcoding");</span><br><span class="line">                subscriber.onCompleted();</span><br><span class="line">            &#125;</span><br><span class="line">    // 注册观察者</span><br><span class="line"> &#125;).subscribe(new Subscriber&lt;String&gt;()	&#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCompleted()</span><br><span class="line">            &#123;</span><br><span class="line">                Log.d("Subscriber", "onCompleted");</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onError(Throwable e)</span><br><span class="line">            &#123;</span><br><span class="line">                Log.e("Subscriber", "onError");</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onNext(String s)</span><br><span class="line">            &#123;</span><br><span class="line">            	// 接收到通知，处理</span><br><span class="line">                Log.d("Subscriber", "onNext = " + s);</span><br><span class="line">            &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>代码逻辑清晰简洁。</p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>A 对 B 进行观察监听， A 是观察者， B就是被观察者。当B状态有改变时，就会通知它的观察者，这样 A 就会进行相应的操作，这就是我们所说的 观察者模式。RxJava 的观察者模式又是怎么样的呢？</p>
+<p>首先我们来了解下RxJava 中的几个基本概念：<code>Observable</code>(可观察者，即被观察者)、 <code>Observer</code> (观察者)、 <code>subscribe</code> (订阅)、事件。<code>Observable</code>和 <code>Observer\ Subscriber</code>通过 <code>subscribe()</code> 方法实现订阅关系，从而 <code>Observable</code>可以在需要的时候发出事件来通知 <code>Observer</code>。</p>
+<p><code>Observer</code>和 <code>Subscriber</code>都是作为被观察者， 提供了相应的回调方法。<code>Subscriber</code>是对<code>Observer</code> 进行了扩展， 两者使用方法一样。<code>Subscriber</code>增加了<code>onStart()</code>回调方法，值得注意的是 <code>onStart()</code> 是在<code>subscribe()</code>  触发的线程中被调用， 不能指定线程。如果要想在指定线程中使用，可以使用<code>doOnSubscribe()</code>。</p>
+<h3 id="创建被观察者"><a href="#创建被观察者" class="headerlink" title="创建被观察者"></a>创建被观察者</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Observable observable = Observable.create(new Observable.OnSubscribe&lt;String&gt;()</span><br><span class="line"> &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void call(Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber)</span><br><span class="line">            &#123;</span><br><span class="line">                subscriber.onNext(<span class="string">"Hello"</span>);</span><br><span class="line">                subscriber.onNext(<span class="string">"yxcoding"</span>);</span><br><span class="line">                subscriber.onCompleted();</span><br><span class="line">            &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<p>除了通过<code>create()</code>创建之外， RxJava 还提供了两种快捷方式<br><code>&lt;T&gt; Observable&lt;T&gt; just(T t1,.......)</code><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable observable = Observable.just(<span class="string">"Hello"</span>, <span class="string">"yxcoding"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>依次传入参数。<br>还可通过数组形式传入<br><code>&lt;T&gt; Observable&lt;T&gt; from(T[] array)</code><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable observable = Observable.from(new String[]&#123;<span class="string">"hello"</span>, <span class="string">"yxcoding"</span>&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="创建观察-订阅者"><a href="#创建观察-订阅者" class="headerlink" title="创建观察/订阅者"></a>创建观察/订阅者</h3><p>被观察者创建好之后，需要创建观察者进行注册监听<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Subscriber subscriber = new Subscriber&lt;String&gt;()</span><br><span class="line">&#123;</span><br><span class="line">@Override</span><br><span class="line">public void onCompleted()</span><br><span class="line">&#123;</span><br><span class="line">Log.d(<span class="string">"Subscriber"</span>, <span class="string">"onCompleted"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onError(Throwable e)</span><br><span class="line">&#123;</span><br><span class="line">Log.e(<span class="string">"Subscriber"</span>, <span class="string">"onError"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onNext(String s)</span><br><span class="line">&#123;</span><br><span class="line">Log.d(<span class="string">"Subscriber"</span>, <span class="string">"onNext = "</span> + s);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>观察者的三个回调方法中，<code>onNext()</code> 会被调用多次，<code>onCompleted()</code> 和<code>onError(Throwable)</code> 只会被调用一次且两者之间只会调用一个。   </p>
+<h3 id="观察者-订阅-被观察者"><a href="#观察者-订阅-被观察者" class="headerlink" title="观察者 订阅 被观察者"></a>观察者 订阅 被观察者</h3><p>当观察者与被观察者 创建好之后，通过<code>observable.subscribe(subscriber)</code>建立订阅关系， 一旦调用<code>observable.subscribe(subscriber)</code>，就会触发 被观察者Obserable中的<code>call()</code>方法进行事件发送。<br><code>subscriber.onNext(&quot;Hello&quot;);</code> 发送事件通知到subscriber中的<code>onNext(T t)</code>方法。</p>
+<p>除了通过<code>observable.subscribe(subscriber/observer)</code>建立订阅关系外， RxJava 还提供了不完整定义的回调， RxJava 会自动根据自己定义的创建出Subsriber，例如<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(<span class="string">"Hello"</span>, <span class="string">"yxcoding"</span>).subscribe(new Action1&lt;String&gt;()</span><br><span class="line">&#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void call(String s)</span><br><span class="line">  &#123;</span><br><span class="line"> 	 Log.d(<span class="string">"Subscriber"</span>, s);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h3><p>将传入的数字数组依次的打印出来<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(new String[] &#123;<span class="string">"Hello"</span>, <span class="string">"yxcoding"</span>&#125;).subscribe(new Action1&lt;String&gt;()</span><br><span class="line">&#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void call(String s)</span><br><span class="line">  &#123;</span><br><span class="line"> 	 Log.d(<span class="string">"Subscriber"</span>, s);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="事件序列对象加工处理（变换）"><a href="#事件序列对象加工处理（变换）" class="headerlink" title="事件序列对象加工处理（变换）"></a>事件序列对象加工处理（变换）</h2><p>以上说到都是最基本的观察者模式交互，即使不适用RxJava，也能用其他的方式实现。在日常开发中我们会碰到这样的情况，在返回的对象中，我们需要对对象进行加工处理，然后再返回。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h3><p>例如下面的例子：<br>当我们传入一张图片的 字符串地址的时候<code>yxcoding/image/logo.png</code>, 一般的做法是 将 它转化为<code>bitmap</code>然后再显示，而在RxJava 中，只需要通过<code>map()</code>来将序列事件中的对象值进行加工即可<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(<span class="string">"yxcoding/image/logo.png"</span>) </span><br><span class="line">    .map(new Func1&lt;String, Bitmap&gt;() &#123;</span><br><span class="line">     	<span class="regexp">//</span> 参数类型 String</span><br><span class="line">        @Override</span><br><span class="line">        public Bitmap call(String path) &#123;</span><br><span class="line">			<span class="regexp">//</span> 返回类型 Bitmap</span><br><span class="line">            <span class="keyword">return</span> getBitmapFromPath(filePath); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribe(new Action1&lt;Bitmap&gt;() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void call(Bitmap bitmap) &#123;</span><br><span class="line">        	 <span class="regexp">//</span> 参数类型 Bitmap</span><br><span class="line">            imageview.setImageBitmap(bitmap);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>那么，也许你会问，<code>Func1</code> 是个什么鬼？ 怎么不用<code>Action1</code>了？ 细心的话，你会发现<code>Func1</code>中<code>call()</code>是有返回值的，而<code>Action1</code>中没有，其他的用法都一样。</p>
+<h3 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap()"></a>flatMap()</h3><p><code>flatMap()</code>相对于<code>map()</code>来说稍微要复杂一点， 但它们的作用都是对序列事件中的对象 进行加工处理然后再返回。但是<code>flatMap()</code>返回的是<code>Observable</code>,<code>flatMap()</code>将发送的时间都集合在同一个<code>Observable</code>, 然后在统一交给<code>Subscriber \observer</code>。程序员还是看代码吧，废话真多</p>
+<blockquote>
+<p>例子：传入用户列表，输出用户的收藏列表</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Collect&gt; collectList = new ArrayList&lt;&gt;();</span><br><span class="line">collectList.add(new Collect(<span class="number">1</span>, <span class="string">"collect1"</span>));</span><br><span class="line">collectList.add(new Collect(<span class="number">2</span>, <span class="string">"collect2"</span>));</span><br><span class="line">collectList.add(new Collect(<span class="number">3</span>, <span class="string">"collect"</span>));</span><br><span class="line"></span><br><span class="line">List&lt;User&gt; userList = new ArrayList&lt;&gt;();</span><br><span class="line">userList.add(new User(<span class="number">1</span>, <span class="string">"user1"</span>, collectList));</span><br><span class="line">userList.add(new User(<span class="number">2</span>, <span class="string">"user2"</span>, collectList));</span><br><span class="line">userList.add(new User(<span class="number">3</span>, <span class="string">"user3"</span>, collectList));</span><br><span class="line"></span><br><span class="line">Observable.from(userList).flatMap(new Func1&lt;User, Observable&lt;Collect<span class="meta">&gt;&gt;</span>()</span><br><span class="line">&#123;</span><br><span class="line">@Override</span><br><span class="line">public Observable&lt;Collect&gt; call(User student)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="regexp">//</span> 通过from 方式创建Observable 返回</span><br><span class="line">	<span class="keyword">return</span> Observable.from(student.getCollectList());</span><br><span class="line">&#125;</span><br><span class="line">&#125;).subscribe(new Subscriber&lt;Collect&gt;()</span><br><span class="line">&#123;</span><br><span class="line">@Override</span><br><span class="line">public void onCompleted()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onError(Throwable e)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onNext(Collect collect)</span><br><span class="line">&#123;</span><br><span class="line">	Log.d(<span class="string">"Subscriber"</span>, collect.toString());</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Scheduler-线程控制"><a href="#Scheduler-线程控制" class="headerlink" title="Scheduler  线程控制"></a>Scheduler  线程控制</h2><p>前面提到，RxJava是线程不变的， 在那个线程调用<code>subscribe()</code>，就在哪个发送事件和处理事件，要想控制线程，就需要使用到<code>Scheduler</code>调度器。<code>Scheduler</code>提供一下集中类型的线程使用场景</p>
+<ul>
+<li><code>Schedulers.immediate()</code>: 直接在当前线程运行，相当于不指定线程。这是默认的 <code>Scheduler</code>。</li>
+<li><code>Schedulers.newThread()</code>: 总是启用新线程，并在新线程执行操作。</li>
+<li><code>Schedulers.io()</code>: I/O 操作（读写文件、读写数据库、网络信息交互等）所使用的 <code>Scheduler</code>。行为模式和 <code>newThread()</code> 差不多，区别在于 <code>io()</code> 的内部实现是是用一个无数量上限的线程池，可以重用空闲的线程，因此多数情况下 <code>io()</code> 比 <code>newThread()</code>更有效率。不要把计算工作放在<code>io()</code>中，可以避免创建不必要的线程。</li>
+<li><code>Schedulers.computation()</code>: 计算所使用的 <code>Scheduler</code>。这个计算指的是 CPU 密集型计算，即不会被 I/O 等操作限制性能的操作，例如图形的计算。这个 <code>Scheduler</code> 使用的固定的线程池，大小为 CPU 核数。不要把 I/O 操作放在 <code>computation()</code> 中，否则 I/O 操作的等待时间会浪费 CPU。</li>
+</ul>
+<p>另外， Android 还有一个专用的 <code>AndroidSchedulers.mainThread()</code>，它指定的操作将在 Android 主线程运行。在日常开发过程中，使用做多的就是 <code>Schedulers.io()</code>。RxJava 中 使用<code>subscribeOn()</code>来指定<code>subscribe()</code>触发/事件产生的线程，通过<code>observeOn()</code>来指定事件处理的线程，典型的例子就是网络请求数据和刷新UI界面。<br>下面我们通过代码来验证下<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> Observable.just(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).subscribeOn(Schedulers.io())</span><br><span class="line">   .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">   .subscribe(new Action1&lt;Integer&gt;()</span><br><span class="line">   &#123;</span><br><span class="line">     @Override</span><br><span class="line">     public void call(Integer integer)</span><br><span class="line">     &#123;</span><br><span class="line">    		 Log.d(<span class="string">"Subscriber"</span>, Thread.currentThread().getName() + <span class="string">"  "</span> + integer);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>输入的结果是<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">main <span class="number">1</span></span><br><span class="line">main <span class="number">2</span></span><br><span class="line">main <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="RxJava-Retrofit-结合了"><a href="#RxJava-Retrofit-结合了" class="headerlink" title="RxJava + Retrofit 结合了"></a>RxJava + Retrofit 结合了</h1><p>关于Retrofit 的介绍和使用，请参考<a href="/2016/06/24/1466752925430/">Android 网络请求框架哪家强?</a>一文。<br>首先利用Retrofit 定义一下接口<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@POST(<span class="string">"onebox/news/query"</span>)</span><br><span class="line">Observable&lt;Result&lt;List&lt;News<span class="meta">&gt;&gt;&gt; </span>newsList(@Query(<span class="string">"key"</span>) String key, @Query(<span class="string">"q"</span>) String q);</span><br></pre></td></tr></table></figure></p>
+<p>利用RxJava 我们可以这样</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">RetrofitUtil.getInstance().createService(RetrofitService.<span class="keyword">class</span>).newsList(<span class="string">"5173fa20d74cf85747dcf6f4636856af"</span>, <span class="string">"\"\""</span>)</span><br><span class="line">.subscribeOn(Schedulers.io())</span><br><span class="line">.doOnSubscribe(new Action<span class="number">0</span>()</span><br><span class="line">&#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void call()</span><br><span class="line">  &#123;</span><br><span class="line"> 	 showLoadingDialog();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.subscribeOn(AndroidSchedulers.mainThread())</span><br><span class="line">.observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">.subscribe(new Subscriber&lt;Result&lt;List&lt;News<span class="meta">&gt;&gt;&gt;</span>()</span><br><span class="line">&#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onCompleted()</span><br><span class="line">  &#123;</span><br><span class="line">  	closeLoadingDialog();</span><br><span class="line">  &#125;</span><br><span class="line">  @Override</span><br><span class="line">  public void onError(Throwable e)</span><br><span class="line">  &#123;</span><br><span class="line">    closeLoadingDialog();</span><br><span class="line">    setResult(<span class="literal">false</span>, e.toString());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onNext(Result&lt;List&lt;News<span class="meta">&gt;&gt; </span>result)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (result.getError_code() == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    	List&lt;News&gt; list = result.getResult();</span><br><span class="line">      <span class="keyword">if</span> (list != null &amp;&amp; !list.isEmpty())</span><br><span class="line">      &#123;</span><br><span class="line">        StringBuffer sb = new StringBuffer();</span><br><span class="line">        <span class="keyword">for</span> (News news : list)</span><br><span class="line">        &#123;</span><br><span class="line">        sb.append(news.getFull_title() + <span class="string">"\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      	setResult(<span class="literal">true</span>, sb.toString());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">    	setResult(<span class="literal">true</span>, result.getReason());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>有些人会问，这么复杂，我用其它的方式也能实现，而且还能比这简单很多。的确，针对普通简单的业务需求来说，这种方式确实搞复杂了。但是， 我们再来看一种场景：</p>
+<blockquote>
+<p>场景：判断请求接口返回，检测token 是否失效, 如果失效，提示用户用户并且跳转到登录页面</p>
+</blockquote>
+<p>针对这样的场景，一般的做法就是 在返回结果中 解析json 后， 判断返回值，这样就会打乱 我们正常的 处理流程。然后，利用RxJava就可以这样处理</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">.map(new Func1&lt;Result&lt;List&lt;News<span class="meta">&gt;&gt;</span>, Result&lt;List&lt;News&gt;&gt;&gt;()</span><br><span class="line">&#123;</span><br><span class="line">  @Override</span><br><span class="line">  public Result&lt;List&lt;News<span class="meta">&gt;&gt; </span>call(Result&lt;List&lt;News&gt;&gt; result)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (Result.TOKEN_CODE == result.getError_code())</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="regexp">//</span> 跳转到用户登录页面</span><br><span class="line">      startActivity(new Intent(AppManager.getInstance().currentActivity(), LoginActivity.<span class="keyword">class</span>));</span><br><span class="line">      <span class="keyword">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>对于这种类型的场景，一般需要构建全局的检测，那么按照RxJava 的方式， 只需通过<code>map()</code>来处理加工后再返回。具体的RxJava+Retrofit 处理方式可具体代码请参考<a href="https://github.com/yxcoding/HttpDemo" target="_blank" rel="external">Demo</a>&gt;&gt;&gt;retrofithttp 包以及RxJava+Retrofit 请求demo。</p>
+<p>针对RxJava的简单介绍和RxJava结合Retrofit 的网络请求已经总结完了。总体来说， RxJava 在某种程度上，简化和清晰了异步事件序列的处理流程， 并且提供类似<code>map()</code>、<code>flatMap()</code> 等<code>lift()</code>原理的操作方式，使得RxJava相对于其他处理异步事件序列的方式 更为简单，方便和强大。</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2016/07/08/1467969481356/" data-title="RxJava+Retrofit 构建网络请求处理方式" data-url="http://yxcoding.github.io/2016/07/08/1467969481356/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'yxcoding'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large black">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer black darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/u/2723786574" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/yxcoding" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2016 www.yxcoding.net, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('black lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=56989526" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

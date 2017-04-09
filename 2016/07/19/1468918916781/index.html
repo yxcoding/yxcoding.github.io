@@ -1,0 +1,686 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>自定义View原来是这么一回事！！！ | yxcoding&#39;s blog</title>
+    <meta name="author" content="yxcoding">
+    
+    <meta name="description" content="自我总结，归纳分享">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="自定义View原来是这么一回事！！！"/>
+    <meta property="og:site_name" content="yxcoding"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="yxcoding" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="black">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">yxcoding</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category " href="http://hukai.me/android-training-course-in-chinese/index.html" >
+                            <i class="fa fa-android "></i>
+                            
+                            Android官方培训
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category " href="http://wiki.jikexueyuan.com/project/swift/" >
+                            <i class="fa fa-apple "></i>
+                            
+                            Swift 中文版教程
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav black darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://ww2.sinaimg.cn/small/74990035jw1f1rjkd681bj20rs0rsdhg.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">yxcoding</p>
+                        <p class="desc">专注于移动开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category " href="http://hukai.me/android-training-course-in-chinese/index.html" >
+                    <i class="fa fa-android "></i>
+                    
+                    Android官方培训
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category " href="http://wiki.jikexueyuan.com/project/swift/" >
+                    <i class="fa fa-apple "></i>
+                    
+                    Swift 中文版教程
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav black darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/开发总结/">
+                    开发总结 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开发总结/移动开发/">
+                    移动开发 <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/开发总结/移动开发/Android/">
+                    Android <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开发总结/服务器/">
+                    服务器 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/干货分享/">
+                    干货分享 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/干货分享/移动开发/">
+                    移动开发 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/干货分享/移动开发/Android/">
+                    Android <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper black">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/开发总结/">开发总结</a><a class="breadcrumb" href="/categories/开发总结/移动开发/">移动开发</a><a class="breadcrumb" href="/categories/开发总结/移动开发/Android/">Android</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>自定义View原来是这么一回事！！！</h1>
+    
+
+
+            </div>
+            <time class="green-link-context" datetime="2016-07-19T09:01:56.000Z"><a href="/2016/07/19/1468918916781/">2016-07-19</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/android/" class="chip green lighten-1">android</a>
+        
+            <a href="/tags/自定义View/" class="chip green lighten-1">自定义View</a>
+        
+    </div>
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#onMeasure-int-widthMeasureSpec-int-heightMeasureSpec"><span class="section table-of-contents-text">onMeasure(int widthMeasureSpec, int heightMeasureSpec)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#onLayout-boolean-changed-int-left-int-top-int-right-int-bottom"><span class="section table-of-contents-text">onLayout(boolean changed, int left, int top, int right, int bottom)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#onDraw-Canvas-canvas"><span class="section table-of-contents-text">onDraw(Canvas canvas)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#View刷新"><span class="section table-of-contents-text">View刷新</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#自定义属性"><span class="section table-of-contents-text">自定义属性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#总结"><span class="section table-of-contents-text">总结</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>虽然Android为我们提供了很多的控件，但是在很多情况下， 已经没法满足我们的独特需求，所以这个时候就需要我们根据原理自定义控件，从而解决问题。首先我们来了解下俩个基础概念:<code>View</code> 和 <code>ViewGroup</code>, 而自定义View 最直接的方式就是继承<code>View</code>或者<code>ViewGroup</code>。<br><code>View</code> 是针对单个视图的，它只有它自己，没有其他的视图。而<code>ViewGroup</code>是个视图组合，它可以添加多个<code>View</code>的子类或者多个<code>ViewGroup</code>的子类。<br><a id="more"></a></p>
+<p>说到自定义View就不得不说<code>onMeasure(int widthMeasureSpec, int heightMeasureSpec)</code>、<br><code>onLayout(boolean changed, int left, int top, int right, int bottom)</code> 和 <code>onDraw(Canvas canvas)</code> 这三个方法。而他们的执行顺序为 <code>Measure-&gt;Layout-&gt;Draw</code></p>
+<h1 id="onMeasure-int-widthMeasureSpec-int-heightMeasureSpec"><a href="#onMeasure-int-widthMeasureSpec-int-heightMeasureSpec" class="headerlink" title="onMeasure(int widthMeasureSpec, int heightMeasureSpec)"></a>onMeasure(int widthMeasureSpec, int heightMeasureSpec)</h1><p>这个方法是用来测量的，很好理解，要想在手机上显示一个View，那必须要知道这个View的大小，而这个方法可以用来计算和设置View的大小。测量的时候需要知道两个值:<code>Mode</code> 和 <code>Size</code>。可通过<code>MeasureSpec.getMode(widthMeasureSpec)</code> 和 <code>MeasureSpec.getSize(widthMeasureSpec)</code> 获取。</p>
+<p><code>Mode</code> 的形式有三种 <code>MeasureSpec.EXACTLY（精确尺寸）</code>、<code>MeasureSpec.AT_MOST（最大尺寸）</code> <code>MeasureSpec.UNSPECIFIED（未指定尺寸）</code>，第三种并不常见，一般指的是 AdapterView 类型的视图。</p>
+<ul>
+<li><code>MeasureSpec.EXACTLY（精确尺寸）</code>:  layout_width或layout_height 设置为match_parent 或者指定了具体值的时候如50dp</li>
+<li><code>MeasureSpec.AT_MOST（最大尺寸）</code>: layout_width或layout_height指定为WRAP_CONTENT的时候，View的大小一般随着View的子View或内容进行变化，此时控件尺寸只要不超过父控件允许的最大尺寸即可。其实就是 size 不会超过 父控件的最大尺寸。</li>
+</ul>
+<p>我们来举个例子:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)</span><br><span class="line">    &#123;</span><br><span class="line">        int widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">        int widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line"></span><br><span class="line">        int heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">        int heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">        int measuredHeight, measuredWidth;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (widthMode == MeasureSpec.EXACTLY)</span><br><span class="line">        &#123;</span><br><span class="line">            measuredWidth = widthSize;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            measuredWidth = <span class="number">50</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (heightMode == MeasureSpec.EXACTLY)</span><br><span class="line">        &#123;</span><br><span class="line">            measuredHeight = heightSize;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            measuredHeight = <span class="number">50</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        setMeasuredDimension(measuredWidth, measuredHeight);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>xml 中</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;LinearLayout</span><br><span class="line">    <span class="symbol">xmlns:</span>android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="symbol">android:</span>layout_width=<span class="string">"100dp"</span></span><br><span class="line">    <span class="symbol">android:</span>layout_height=<span class="string">"100dp"</span></span><br><span class="line">    <span class="symbol">android:</span>gravity=<span class="string">"center"</span></span><br><span class="line">    <span class="symbol">android:</span>background=<span class="string">"@android:color/holo_red_dark"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;net.yxcoding.customview.CustomView</span><br><span class="line">        <span class="symbol">android:</span>layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="symbol">android:</span>layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        <span class="symbol">android:</span>background=<span class="string">"@android:color/holo_blue_bright"</span>/&gt;</span><br><span class="line">&lt;<span class="regexp">/LinearLayout&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果如下图所示:<br><img src="https://github.com/yxcoding/blog_images/blob/master/CustomView/QQ%E5%9B%BE%E7%89%8720160719173419.png?raw=true" alt=""></p>
+<p>如图所示 layout_width 为 match_parent，所以是 <code>MeasureSpec.EXACTLY</code>,<code>measuredWidth = widthSize;</code>最终的宽度就等于match_parent,也就是等于父类的100dp。而 layout_height 是 wrap_content，所以 Mode 是MeasureSpec.AT_MOST, <code>measuredHeight = 50</code>,案例中的最终高度就等于50。</p>
+<p>它的测量流程如下图所示<br><img src="https://github.com/yxcoding/blog_images/blob/master/CustomView/abfdab0536252074b67bcc7c05a4be7d.png?raw=true" alt=""></p>
+<h1 id="onLayout-boolean-changed-int-left-int-top-int-right-int-bottom"><a href="#onLayout-boolean-changed-int-left-int-top-int-right-int-bottom" class="headerlink" title="onLayout(boolean changed, int left, int top, int right, int bottom)"></a>onLayout(boolean changed, int left, int top, int right, int bottom)</h1><p>这个方法 是针对 View 容器的，一般对于单纯的View 不需要重写该方法。 <code>onLayout</code> 主要针对子View的显示位置，其中的left,top,right,bottom 分别表示显示父控件的举行可用空间（除去margin 和 paadding 的大小）。<br>可在该方法中获取所有子View，并且调用子View 的 <code>layout(int l, int t, int r, int b)</code>来重新摆放位置。例如<code>layout(10,10,100,100)</code>,则说明该View 在距离父控件的左上角位置<code>(10,10)</code>的位置，显示的宽和高则为<code>(r-l, b-t)</code>即<code>(90, 90)</code>。下面我们举个例子，将子View 横向排列，之间间距为 20。</p>
+<p>首先将 CustomView 继承 ViewGroup，然后重写下面两个方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected void onLayout(boolean changed, int left, int top, int right, int bottom)</span><br><span class="line">    &#123;</span><br><span class="line">        Log.d("onLayout", "left=" + left + " top=" + top + " right=" + right + " bottom=" + bottom);</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; getChildCount(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            View view = getChildAt(i);</span><br><span class="line">            int measureWidth = view.getMeasuredWidth();</span><br><span class="line">            int measureHeight = view.getMeasuredHeight();</span><br><span class="line">            view.layout(left, top, left + measureWidth, measureHeight + top);</span><br><span class="line">            left += measureWidth + 20;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)</span><br><span class="line">    &#123;</span><br><span class="line">        int widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">        int widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line"></span><br><span class="line">        int heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">        int heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">        int measuredHeight = 0, measuredWidth = 0;</span><br><span class="line"></span><br><span class="line">        if (widthMode == MeasureSpec.EXACTLY || widthMode == MeasureSpec.AT_MOST)</span><br><span class="line">        &#123;</span><br><span class="line">            measuredWidth = widthSize;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (heightMode == MeasureSpec.EXACTLY || heightMode == MeasureSpec.AT_MOST)</span><br><span class="line">        &#123;</span><br><span class="line">            measuredHeight = heightSize;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 计算孩子View大小</span><br><span class="line">        measureChildren(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">        </span><br><span class="line">        setMeasuredDimension(measuredWidth, measuredHeight);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>onMeasure</code>通过<code>measureChildren(widthMeasureSpec, heightMeasureSpec)</code> 计算子View 们的大小，在<code>onLayout</code>中通过<code>getMeasuredWidth()</code>和<code>getMeasuredHeight()</code> 获取子View 的大小并且通过已知 left，top，right 和bottom 来重新设置子View的摆放位置。显示效果如下图所示<br><img src="https://github.com/yxcoding/blog_images/blob/master/CustomView/QQ%E5%9B%BE%E7%89%8720160720103312.png?raw=true" alt=""></p>
+<h1 id="onDraw-Canvas-canvas"><a href="#onDraw-Canvas-canvas" class="headerlink" title="onDraw(Canvas canvas)"></a>onDraw(Canvas canvas)</h1><p>下面我们来看看最有意思的方法，之所以说它有意思，是因为它可以画很多东西。它就是一个画布，你可以在它上面画出你想要的图案。然后说到<code>Canvas</code> 画布就不得不说<code>Paint</code>画笔了，要想画出东西，得用画笔才行，所以画布告诉系统要画什么，画笔就告诉系统怎么画，需要什么颜色、什么线条宽度等等。例如</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected void onDraw(Canvas canvas)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="regexp">//</span> 画圆</span><br><span class="line">        paint.setColor(Color.RED);</span><br><span class="line">        <span class="regexp">//</span> 线条宽度</span><br><span class="line">        paint.setStrokeWidth(<span class="number">5</span>);</span><br><span class="line">        canvas.drawCircle(<span class="number">80</span>, <span class="number">80</span>, <span class="number">80</span>, paint);</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span> 画矩形</span><br><span class="line">        paint.setColor(Color.BLUE);</span><br><span class="line">        canvas.drawRect(<span class="number">80</span> * <span class="number">2</span> + <span class="number">20</span>, <span class="number">0</span>, getMeasuredWidth() - (<span class="number">80</span> * <span class="number">2</span> + <span class="number">20</span>), getMeasuredHeight() / <span class="number">2</span>, paint);</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span> 画线条</span><br><span class="line">        paint.setColor(Color.BLACK);</span><br><span class="line">        paint.setStrokeWidth(<span class="number">10</span>);</span><br><span class="line">        canvas.drawLine(<span class="number">0</span>, getMeasuredHeight() / <span class="number">2</span> + <span class="number">20</span>, getMeasuredWidth() / <span class="number">2</span>, getMeasuredHeight() / <span class="number">2</span> + <span class="number">20</span>, paint);</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span> 画文字</span><br><span class="line">        paint.setColor(Color.YELLOW);</span><br><span class="line">        paint.setTextSize(<span class="number">40</span>);</span><br><span class="line">        canvas.drawText(<span class="string">"hello,yxcoding"</span>, getMeasuredHeight() / <span class="number">2</span>, getMeasuredHeight() - <span class="number">40</span>, paint);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下图所示<br><img src="https://github.com/yxcoding/blog_images/blob/master/CustomView/QQ%E5%9B%BE%E7%89%8720160720110520.png?raw=true" alt=""></p>
+<h1 id="View刷新"><a href="#View刷新" class="headerlink" title="View刷新"></a>View刷新</h1><p>我们常常会去刷新View，从而实现特定的需求。比如 在一个自定义View中有一些动画，这个时候 就需要我们刷新View。那么改如何实现View 刷新呢。android为我们提供了三种刷新的方式 <code>requestLayout()</code>、<code>invalidate()</code>和<code>postInvalidate()</code>。 <code>invalidate()</code>和<code>postInvalidate()</code>和是一样的，只不过<code>postInvalidate()</code> 是在子线程中唤醒刷新操作，<br>它们俩 只会调用draw 即使 并没有什么变化。而 <code>requestLayout()</code> 顾名思义，当布局发生变化的时候会调用measure和layout等和布局有关的操作。<br>所以总结一下就是，布局发生变化调用 <code>requestLayout()</code>；当需要执行刷新动画的时候可以执行<code>postInvalidate()</code>。 或<code>invalidate()</code>从而唤醒<code>onDraw()</code>中的代码。 根据上面的案例我们改造一下</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public void startAnimation()</span><br><span class="line">    &#123;</span><br><span class="line">        animator = ValueAnimator.ofFloat(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()</span><br><span class="line">        &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onAnimationUpdate(ValueAnimator animation)</span><br><span class="line">            &#123;</span><br><span class="line">                scale = (float) animation.getAnimatedValue();</span><br><span class="line">                postInvalidate();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span> 重复执行动画</span><br><span class="line">        animator.setRepeatCount(-<span class="number">1</span>);</span><br><span class="line">        <span class="regexp">//</span> 重复模式为 从初始状态开始</span><br><span class="line">        animator.setRepeatMode(ValueAnimator.REVERSE);</span><br><span class="line">        animator.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onDraw(Canvas canvas)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="regexp">//</span> 画圆</span><br><span class="line">        paint.setColor(Color.RED);</span><br><span class="line">        <span class="regexp">//</span> 线条宽度</span><br><span class="line">        paint.setStrokeWidth(<span class="number">5</span>);</span><br><span class="line">        canvas.drawCircle(<span class="number">80</span>, <span class="number">80</span>, <span class="number">80</span> * scale, paint);</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span> 画矩形</span><br><span class="line">        paint.setColor(Color.BLUE);</span><br><span class="line">        canvas.drawRect(<span class="number">80</span> * <span class="number">2</span> + <span class="number">20</span>, <span class="number">0</span>, getMeasuredWidth() - (<span class="number">80</span> * <span class="number">2</span> + <span class="number">20</span>) * scale, getMeasuredHeight() / <span class="number">2</span> * scale, paint);</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span> 画线条</span><br><span class="line">        paint.setColor(Color.BLACK);</span><br><span class="line">        paint.setStrokeWidth(<span class="number">10</span>);</span><br><span class="line">        canvas.drawLine(<span class="number">0</span>, getMeasuredHeight() / <span class="number">2</span> + <span class="number">20</span>, getMeasuredWidth() / <span class="number">2</span> * scale, getMeasuredHeight() / <span class="number">2</span> + <span class="number">20</span>, paint);</span><br><span class="line"></span><br><span class="line">        <span class="regexp">//</span> 画文字</span><br><span class="line">        paint.setColor(Color.YELLOW);</span><br><span class="line">        paint.setTextSize(<span class="number">40</span> * scale);</span><br><span class="line">        canvas.drawText(<span class="string">"hello,yxcoding"</span>, getMeasuredHeight() / <span class="number">2</span>, getMeasuredHeight() - <span class="number">40</span>, paint);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>因为以上的动画是重复执行的，所以在动画的回调接口中会不断的调用<code>postInvalidate</code>刷新View，而在onDraw()中通过每次计算的scale 来设置绘画的系数，从而达到以下图中的动画效果<br><img src="https://github.com/yxcoding/blog_images/blob/master/CustomView/ondrwa.gif?raw=true" alt=""></p>
+<h1 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h1><p>我们再写xml布局的时候，会有很多的属性值需要设置，如<code>android:layout_width=&quot;match_parent&quot;</code>,我们会发现属性设置有三部分: 命名空间：属性名称 = 属性值，那么 我们也按照这种格式自定义属性。大致分为以下步骤：</p>
+<ol>
+<li>在res/values 下定义attrs.xml 文件，如下所示：</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;declare-styleable name="CustomView"&gt;</span><br><span class="line">        &lt;attr name="circleColor" format="color" /&gt;</span><br><span class="line">        &lt;attr name="rectColor" format="color" /&gt;</span><br><span class="line">        &lt;attr name="lineColor" format="color" /&gt;</span><br><span class="line">        &lt;attr name="textColor" format="color"/&gt;</span><br><span class="line">        &lt;attr name="circleRadius" format="dimension" /&gt;</span><br><span class="line">    &lt;/declare-styleable&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<p>CustomView是我们在代码中获取该属性集合的凭证，format 代表的是该属性的 值类型，例如color 代表是颜色值，dimension 代表了尺寸长度值等等。</p>
+<ol>
+<li>在xml 布局中定义命名空间和使用</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;!--定义命名空间， 在gradle中不用使用包名后缀，使用 /res-auto--&gt;</span><br><span class="line">&lt;LinearLayout</span><br><span class="line">    <span class="symbol">xmlns:</span>android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="symbol">xmlns:</span>custom=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">    <span class="symbol">android:</span>layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    <span class="symbol">android:</span>layout_height=<span class="string">"wrap_content"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;net.yxcoding.customview.CustomView</span><br><span class="line">        <span class="symbol">android:</span>layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="symbol">android:</span>layout_height=<span class="string">"200dp"</span></span><br><span class="line">        <span class="symbol">android:</span>layout_margin=<span class="string">"10dp"</span></span><br><span class="line">        <span class="symbol">android:</span>background=<span class="string">"@android:color/holo_blue_bright"</span></span><br><span class="line">        <span class="symbol">custom:</span>circleColor=<span class="string">"#ff0000"</span></span><br><span class="line">        <span class="symbol">custom:</span>circleRadius=<span class="string">"40dp"</span></span><br><span class="line">        <span class="symbol">custom:</span>lineColor=<span class="string">"#0000ff"</span></span><br><span class="line">        <span class="symbol">custom:</span>rectColor=<span class="string">"#00ff00"</span></span><br><span class="line">        <span class="symbol">custom:</span>textColor=<span class="string">"#ffffff"</span>/&gt;</span><br><span class="line">&lt;<span class="regexp">/LinearLayout&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>然后在代码中 就可以这样获取我们自定义的属性值了</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public CustomView(Context context, AttributeSet attrs) &#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line"></span><br><span class="line">        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomView);</span><br><span class="line"></span><br><span class="line">        circleColor = a.getColor(R.styleable.CustomView_circleColor, <span class="number">0x000000</span>);</span><br><span class="line">        rectColor = a.getColor(R.styleable.CustomView_rectColor, <span class="number">0x000000</span>);</span><br><span class="line">        lineColor = a.getColor(R.styleable.CustomView_lineColor, <span class="number">0x000000</span>);</span><br><span class="line">        textColor = a.getColor(R.styleable.CustomView_textColor, <span class="number">0x000000</span>);</span><br><span class="line"></span><br><span class="line">        circleRadius = a.getDimension(R.styleable.CustomView_circleRadius, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">        a.recycle();</span><br><span class="line"></span><br><span class="line">        init(context);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>通过对应的属性值格式 来获取相应的属性值，例如 颜色值 就是<code>getColor()</code>, 尺寸大小就是<code>getDimension()</code>。最后通过调用<code>a.recycle()</code> 来释放回收资源。获取到自定义属性值后，就可以在<code>onDraw</code> 中 设置了。效果如下图所示<br><img src="https://raw.githubusercontent.com/yxcoding/blog_images/master/CustomView/QQ%E5%9B%BE%E7%89%8720160720160338.png" alt=""></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上阐述了一些 常用的自定义View 的方式，通过继承和重写相应的方法来重构View。还有一种方式就是通过 LayoutInflater 从已知xml布局文件中 获取定义布局View。另外，在自定义View过程中，会处理一些事件处理onTouchEvent，具体的可参考 <a href="http://blog.csdn.net/bigconvience/article/details/26456359" target="_blank" rel="external">Android的Touch系统简介（一） </a> 和 <a href="">Android Touch系统简介（二）:实例详解onInterceptTouchEvent与onTouchEvent的调用过程 </a> 两篇文章。</p>
+<p>学会自定义View 能够帮助我们更加深入的了解android页面View 的原理，同时同事能够为我们带来无限的可能。大家加油！</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2016/07/19/1468918916781/" data-title="自定义View原来是这么一回事！！！" data-url="http://yxcoding.github.io/2016/07/19/1468918916781/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'yxcoding'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large black">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer black darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/u/2723786574" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/yxcoding" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright green-link-context">
+        <div class="container">
+            © 2016 www.yxcoding.net, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('black lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "search.xml";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword green lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=56989526" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
