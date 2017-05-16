@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yxcoding.github.io/"/>
-  <updated>2017-05-16T13:03:29.000Z</updated>
+  <updated>2017-05-16T13:10:18.000Z</updated>
   <id>http://yxcoding.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yxcoding.github.io/2017/05/16/1494933779425/"/>
     <id>http://yxcoding.github.io/2017/05/16/1494933779425/</id>
     <published>2017-05-16T11:53:49.000Z</published>
-    <updated>2017-05-16T13:03:29.000Z</updated>
+    <updated>2017-05-16T13:10:18.000Z</updated>
     
     <content type="html">&lt;p&gt;随着Android studio 功能的不断强大和Google老爸的大力推荐， Android 开发已经完全脱离了eclipse，包括NDK开发现在Android studio 也能够非常好的支持。从官网上我们知道Google为我们提供了ndk-build和cmake两种方式来进行native的编译。今天我们要讨论的就是使用cmake来进行配置已经通过具体的实例来讲解开发过程中常用的配置。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;创建C-C-工程&quot;&gt;&lt;a href=&quot;#创建C-C-工程&quot; class=&quot;headerlink&quot; title=&quot;创建C/C++工程&quot;&gt;&lt;/a&gt;创建C/C++工程&lt;/h1&gt;&lt;p&gt;在创建Android项目过程中我们选择”Include C++ support”选项, C++标准我们选择C++11，这样创建的项目就是一个C/C++ NDK工程了，就能够进行JAVA和C混合编程。&lt;br&gt;&lt;img src=&quot;http://7xprrr.com1.z0.glb.clouddn.com/1D508D27-F7A3-4CE2-9F90-CE9DFDE449AE.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;我们将会在CMakeLists.txt中进行编译配置，cpp中我们将会用来存放C/C++源码。&lt;/p&gt;
@@ -39,9 +39,11 @@
     
     </summary>
     
-      <category term="移动开发" scheme="http://yxcoding.github.io/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+      <category term="开发总结" scheme="http://yxcoding.github.io/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/"/>
     
-      <category term="Android" scheme="http://yxcoding.github.io/categories/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
+      <category term="移动开发" scheme="http://yxcoding.github.io/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android" scheme="http://yxcoding.github.io/categories/%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Android/"/>
     
     
       <category term="android studio" scheme="http://yxcoding.github.io/tags/android-studio/"/>
