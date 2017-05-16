@@ -7,7 +7,7 @@
 
     
 
-    <title>Linux Mysql 解决中文乱码的问题 | yxcoding&#39;s blog</title>
+    <title>cmake | yxcoding&#39;s blog</title>
     <meta name="author" content="yxcoding">
     
     <meta name="description" content="自我总结，归纳分享">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Linux Mysql 解决中文乱码的问题"/>
+    
     <meta property="og:site_name" content="yxcoding"/>
 
     
@@ -297,96 +297,30 @@
 
     <main>
         <div class="container main-container">
-    <nav class="page-nav hide-on-small-only">
+    
+
+<nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper black">
-        <span class="breadcrumb">当前位置（分类目录）</span>
-        
-            
-    
-    
-    <a class="breadcrumb" href="/categories/开发总结/">开发总结</a><a class="breadcrumb" href="/categories/开发总结/服务器/">服务器</a>
-
-
+        <span class="breadcrumb">当前位置（标签）</span>
         
 
+        
+            <a class="breadcrumb" href="/tags/cmake/">cmake</a>
         
     </div>
 </nav>
 
-<article>
-    <div class="card">
-        <div class="card-content">
-            
-
-            <div class="article-title">
-                
-    
-        <h1>Linux Mysql 解决中文乱码的问题</h1>
-    
 
 
-            </div>
-            <time class="green-link-context" datetime="2016-06-23T02:27:00.000Z"><a href="/2016/06/23/Linux-Mysql-Ω‚æˆ÷–Œƒ¬“¬ÎµƒŒ Ã‚/">2016-06-23</a></time>
-
-            
-    <div class="tags-row">
+    <div class="collection mt-0">
         
-            <a href="/tags/linux/" class="chip green lighten-1">linux</a>
-        
-            <a href="/tags/mysql/" class="chip green lighten-1">mysql</a>
+            <a href="/2017/05/16/1494933779425/" class="collection-item grey-text text-darken-1">
+                <time datetime="2017-05-16T11:53:49.000Z">2017-05-16</time>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                Android Sutdio NDK Cmake 编译案例
+            </a>
         
     </div>
-
-
-            <div class="toc green-link-context hide-on-med-and-down">
-    
-</div>
-
-
-            <div class="entry green-link-context">
-                <p>Linux 下Mysql 默认字符集并不是UTF-8,所以只要将mysql的默认字符集修改成UTF-8即可，可以使用命令查看</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;  show variables like <span class="string">'character%'</span>;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>显示结果如下：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------+----------------------------+ </span><br><span class="line"><span class="params">| Variable_name |</span> Value <span class="params">| </span><br><span class="line">+--------------------------+----------------------------+ </span><br><span class="line">|</span> character_set_client <span class="params">| latin1 |</span> </span><br><span class="line"><span class="params">| character_set_connection |</span> latin1 <span class="params">| </span><br><span class="line">|</span> character_set_database <span class="params">| latin1 |</span> </span><br><span class="line"><span class="params">| character_set_filesystem |</span> binary <span class="params">| </span><br><span class="line">|</span> character_set_results <span class="params">| latin1 |</span> </span><br><span class="line"><span class="params">| character_set_server |</span> latin1 <span class="params">| </span><br><span class="line">|</span> character_set_system <span class="params">| utf8 |</span> </span><br><span class="line"><span class="params">| character_sets_dir |</span> /usr/share/mysql/charsets/ <span class="params">| </span><br><span class="line">+--------------------------+----------------------------+</span></span><br></pre></td></tr></table></figure></p>
-<p>进入/etc/mysql/my.cnf 在相应模块下 添加编码设置</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysqld]</span><br><span class="line">character-set-server=utf8</span><br><span class="line">[mysql]</span><br><span class="line">no-auto-rehash</span><br></pre></td></tr></table></figure>
-<p>修改完成后保存， service mysql restart 重启mysql服务…</p>
-
-            </div>
-        </div>
-    </div>
-</article>
-
-
-
-
-    <section id="comment">
-        <div class="card">
-            <div class="card-content">
-                <!-- Duoshuo Comment BEGIN -->
-                <div class="ds-thread" data-thread-key="2016/06/23/Linux-Mysql-Ω‚æˆ÷–Œƒ¬“¬ÎµƒŒ Ã‚/" data-title="Linux Mysql 解决中文乱码的问题" data-url="http://yxcoding.github.io/2016/06/23/Linux-Mysql-Ω‚æˆ÷–Œƒ¬“¬ÎµƒŒ Ã‚/"></div>
-
-                <script type="text/javascript">
-                    console.log(document.querySelector('.ds-thread'));
-                    var duoshuoQuery = {
-                        short_name: 'yxcoding'
-                    };
-                    (function() {
-                        var ds = document.createElement('script');
-                        ds.type = 'text/javascript';
-                        ds.async = true;
-                        ds.src = (document.location.protocol == 'https:'
-                            ? 'https:'
-                            : 'http:') + '//static.duoshuo.com/embed.js';
-                        ds.charset = 'UTF-8';
-                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-                    })();
-                </script>
-                <!-- Duoshuo Comment END -->
-            </div>
-        </div>
-    </section>
-
 
 
 </div>
