@@ -273,7 +273,7 @@
     
     <entry>
       <title><![CDATA[GitHub Top 100 的Android 开源库[转载]]]></title>
-      <url>http://yxcoding.github.io/2016/06/23/GitHub-Top-100-%C2%B5%C6%92Android-%C3%B8%E2%84%A2%E2%80%98%C2%A5%C3%B8%E2%80%9A%5B%E2%97%8A%E2%84%A2%E2%80%98y%CC%88%5D/</url>
+      <url>http://yxcoding.github.io/2016/06/23/1494933779424/</url>
       <content type="html"><![CDATA[<p>今天看到stormzhang发的一篇文章，觉得非常不错，特意转载一下，大家一起分享，<a href="http://mp.weixin.qq.com/s?__biz=MzA4NTQwNDcyMA==&amp;mid=402675429&amp;idx=1&amp;sn=ba3afd2069004b220eaa8a77fdecbaf7&amp;scene=23&amp;srcid=0327HSwrg5A4kpYmncHp8TgL#rd" target="_blank" rel="external">原文地址</a>，记录了github上关于android的排名前100的开源软件，都是干货<br><a id="more"></a></p>
 <ol>
 <li><p>React Native<br>这个是 Facebook 在 React.js Conf 2015 大会上推出的基于 JavaScript 的开源框架 React Native, 该框架结合了 Web 应用和 Native 应用的优势, 可以使用 JavaScript 来开发 iOS 和 Android 原生应用</p>
@@ -482,7 +482,7 @@
     
     <entry>
       <title><![CDATA[Linux MySql 设置远程登录权限]]></title>
-      <url>http://yxcoding.github.io/2016/06/23/Linux-MySql-%E2%80%A6E%CC%88%C3%B7%E2%88%9A%E2%80%98%E2%88%82%E2%89%A5A%CC%83%C2%B5%C2%AB%C2%AC%C2%BA%C2%BB%C2%AE%C5%93%EF%AC%81/</url>
+      <url>http://yxcoding.github.io/2016/06/23/1474977250401/</url>
       <content type="html"><![CDATA[<p>在已经安装好mysql 的linux服务器上，3360端口默认监听的是127.0.0.1也就是本地地址，要想远程登录mysql服务器，必须更改监听地址…<br><a id="more"></a><br><img src="http://7xprrr.com1.z0.glb.clouddn.com//image/20160108/1452251700895098190.jpg" alt=""></p>
 <p>可以使用命令  netstat -an | grep 3306 查看3306端口<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp	 <span class="number">0</span>	<span class="number">0</span> <span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span><span class="symbol">:</span><span class="number">3306</span>  <span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span><span class="symbol">:*</span>   LISTEN</span><br></pre></td></tr></table></figure></p>
 <p>修改地址:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/mysql</span><br><span class="line">sudo vi my.cnf</span><br></pre></td></tr></table></figure></p>
@@ -492,7 +492,7 @@
     
     <entry>
       <title><![CDATA[Linux Mysql 解决中文乱码的问题]]></title>
-      <url>http://yxcoding.github.io/2016/06/23/Linux-Mysql-%CE%A9%E2%80%9A%C3%A6%CB%86%C3%B7%E2%80%93%C5%92%C6%92%C2%AC%E2%80%9C%C2%ACI%CC%82%C2%B5%C6%92%C5%92%C2%A0A%CC%83%E2%80%9A/</url>
+      <url>http://yxcoding.github.io/2016/06/23/1474977250402/</url>
       <content type="html"><![CDATA[<p>Linux 下Mysql 默认字符集并不是UTF-8,所以只要将mysql的默认字符集修改成UTF-8即可，可以使用命令查看</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;  show variables like <span class="string">'character%'</span>;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -505,7 +505,7 @@
     
     <entry>
       <title><![CDATA[Android Studio 多渠道打包，自定义APK 名称]]></title>
-      <url>http://yxcoding.github.io/2016/06/23/Android-Studio-%E2%88%82%E2%80%A1%C2%AB%CB%9B%C2%B5%C2%BF%C2%A5U%CC%81%E2%88%9E%C2%B8%C2%A3%C2%A8%E2%97%8A%E2%80%98%E2%88%82%C2%AE%E2%80%9CA%CC%82APK-%E2%88%9A%CB%9A%E2%89%A5%E2%88%86/</url>
+      <url>http://yxcoding.github.io/2016/06/23/1474977250403/</url>
       <content type="html"><![CDATA[<p>使用Android Studio 有一段时间了， 让我总结下使用感受，那就是 “爽”！！！<br>由于公司项目android版渠道比较多， 所以打包的时候一般都会使用多渠道打包。而AS 为我们提供了很方便很牛逼的脚本工具Gradle，废话不多说<br><a id="more"></a></p>
 <p><img src="http://makers-with-myson.blog.so-net.ne.jp/_images/blog/_786/makers-with-myson/m_520android20studio20startup.png" alt=""></p>
 <p>首先在项目底下的 build.gradle 文件中的 android 节点 添加 productFlavors 节点 ， 如下</p>

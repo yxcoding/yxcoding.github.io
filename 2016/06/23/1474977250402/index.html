@@ -7,7 +7,7 @@
 
     
 
-    <title>第 2 页 | yxcoding&#39;s blog</title>
+    <title>Linux Mysql 解决中文乱码的问题 | yxcoding&#39;s blog</title>
     <meta name="author" content="yxcoding">
     
     <meta name="description" content="自我总结，归纳分享">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Linux Mysql 解决中文乱码的问题"/>
     <meta property="og:site_name" content="yxcoding"/>
 
     
@@ -280,53 +280,39 @@
 
 
     <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper black">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/开发总结/">开发总结</a><a class="breadcrumb" href="/categories/开发总结/服务器/">服务器</a>
+
+
         
 
-<div class="slider">
-    <ul class="slides">
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="http://desk.fd.zol-img.com.cn/t_s1366x768c5/g5/M00/0A/0D/ChMkJldhFnOIKmb5AAVSR1ujQvEAASojQOjwZgABVJf501.jpg">
-               <div class="caption left-align">
-                 <h4>多读书 常思考</h3>
-                 <h5 class="light grey-text text-lighten-3">读书对于智慧，就像体操对于身体一样</h5>
-               </div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="http://desk.fd.zol-img.com.cn/t_s1366x768c5/g5/M00/01/0F/ChMkJ1bKwi-ITA-4AAdshmazPEkAALGkAPrJ2gAB2ye842.jpg">
-               <div class="caption right-align">
-                 <h4>灯红酒绿</h3>
-                 <h5 class="light grey-text text-lighten-3">喧嚣的世界，静心静神</h5>
-               </div>
-           </a>
-       </li>
-    
-   </ul>
- </div>
+        
+    </div>
+</nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
 
-
-<div id="article-list" class="container main-container">
-    
-        <article class="simple-article">
-        <div class="card">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="light-blue-link-context"><a href="/2016/06/23/1474977250402/">Linux Mysql 解决中文乱码的问题</a></h1>
-    
-
-
-                </div>
-
-                <time class="green-link-context" datetime="2016-06-23T02:27:00.000Z"><a href="/2016/06/23/1474977250402/">2016-06-23</a></time>
-
+            <div class="article-title">
                 
+    
+        <h1>Linux Mysql 解决中文乱码的问题</h1>
+    
+
+
+            </div>
+            <time class="green-link-context" datetime="2016-06-23T02:27:00.000Z"><a href="/2016/06/23/1474977250402/">2016-06-23</a></time>
+
+            
     <div class="tags-row">
         
             <a href="/tags/linux/" class="chip green lighten-1">linux</a>
@@ -336,79 +322,56 @@
     </div>
 
 
+            <div class="toc green-link-context hide-on-med-and-down">
+    
+</div>
 
-                
-                    <div class="entry green-link-context">
-                        <p>Linux 下Mysql 默认字符集并不是UTF-8,所以只要将mysql的默认字符集修改成UTF-8即可，可以使用命令查看</p>
+
+            <div class="entry green-link-context">
+                <p>Linux 下Mysql 默认字符集并不是UTF-8,所以只要将mysql的默认字符集修改成UTF-8即可，可以使用命令查看</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;  show variables like <span class="string">'character%'</span>;</span><br></pre></td></tr></table></figure>
-                    </div>
-                
-            </div>
+<a id="more"></a>
+<p>显示结果如下：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">+--------------------------+----------------------------+ </span><br><span class="line"><span class="params">| Variable_name |</span> Value <span class="params">| </span><br><span class="line">+--------------------------+----------------------------+ </span><br><span class="line">|</span> character_set_client <span class="params">| latin1 |</span> </span><br><span class="line"><span class="params">| character_set_connection |</span> latin1 <span class="params">| </span><br><span class="line">|</span> character_set_database <span class="params">| latin1 |</span> </span><br><span class="line"><span class="params">| character_set_filesystem |</span> binary <span class="params">| </span><br><span class="line">|</span> character_set_results <span class="params">| latin1 |</span> </span><br><span class="line"><span class="params">| character_set_server |</span> latin1 <span class="params">| </span><br><span class="line">|</span> character_set_system <span class="params">| utf8 |</span> </span><br><span class="line"><span class="params">| character_sets_dir |</span> /usr/share/mysql/charsets/ <span class="params">| </span><br><span class="line">+--------------------------+----------------------------+</span></span><br></pre></td></tr></table></figure></p>
+<p>进入/etc/mysql/my.cnf 在相应模块下 添加编码设置</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysqld]</span><br><span class="line">character-set-server=utf8</span><br><span class="line">[mysql]</span><br><span class="line">no-auto-rehash</span><br></pre></td></tr></table></figure>
+<p>修改完成后保存， service mysql restart 重启mysql服务…</p>
 
-            
-            <div class="card-action green-link-context">
-                <a href="2016/06/23/1474977250402/">READ MORE</a>
             </div>
-            
         </div>
+    </div>
 </article>
 
-    
-        <article class="simple-article">
+
+
+
+    <section id="comment">
         <div class="card">
             <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="light-blue-link-context"><a href="/2016/06/23/1474977250403/">Android Studio 多渠道打包，自定义APK 名称</a></h1>
-    
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2016/06/23/1474977250402/" data-title="Linux Mysql 解决中文乱码的问题" data-url="http://yxcoding.github.io/2016/06/23/1474977250402/"></div>
 
-
-                </div>
-
-                <time class="green-link-context" datetime="2016-06-23T01:36:00.000Z"><a href="/2016/06/23/1474977250403/">2016-06-23</a></time>
-
-                
-    <div class="tags-row">
-        
-            <a href="/tags/android-studio/" class="chip green lighten-1">android studio</a>
-        
-    </div>
-
-
-
-                
-                    <div class="entry green-link-context">
-                        <p>使用Android Studio 有一段时间了， 让我总结下使用感受，那就是 “爽”！！！<br>由于公司项目android版渠道比较多， 所以打包的时候一般都会使用多渠道打包。而AS 为我们提供了很方便很牛逼的脚本工具Gradle，废话不多说<br>
-                    </div>
-                
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'yxcoding'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
             </div>
-
-            
-            <div class="card-action green-link-context">
-                <a href="2016/06/23/1474977250403/">READ MORE</a>
-            </div>
-            
         </div>
-</article>
+    </section>
 
-    
 
-    <ul class="pagination center-align">
-    <li class="">
-        <a href="/"><i class="fa fa-angle-left"></i></a>
-    </li>
-    
-    
-        <li class="waves-effect"><a href="/">1</a></li>
-    
-        <li class="active black"><a href="/page/2">2</a></li>
-    
-    
-    <li class="disabled">
-        <a href="/"><i class="fa fa-angle-right"></i></a>
-    </li>
- </ul>
 
 </div>
 
