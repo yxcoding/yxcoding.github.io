@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>yxcoding</title>
-  <subtitle>yxcoding&#39;s blog</subtitle>
+  <title>yxdroid&#39;s blog</title>
+  <subtitle>yxdroid&#39;s blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yxcoding.github.io/"/>
